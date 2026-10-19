@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#0ea5e9" />
+    <meta
+      name="description"
+      content="AeroOps — Flight Operations Management System"
+    />
+
+    <!-- ⭐ PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="AeroOps" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <title>AeroOps — Flight Operations</title>
+
+    <!-- ⭐ Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            /* ⭐ Custom animations */
+            keyframes: {
+              fadeIn: {
+                "0%": { opacity: "0" },
+                "100%": { opacity: "1" },
+              },
+              slideIn: {
+                "0%": { transform: "translateX(-100%)" },
+                "100%": { transform: "translateX(0)" },
+              },
+              slideUp: {
+                "0%": { transform: "translateY(100%)" },
+                "100%": { transform: "translateY(0)" },
+              },
+              scaleIn: {
+                "0%": { transform: "scale(0.9)", opacity: "0" },
+                "100%": { transform: "scale(1)", opacity: "1" },
+              },
+            },
+            animation: {
+              fadeIn: "fadeIn 0.2s ease-out",
+              slideIn: "slideIn 0.3s ease-out",
+              slideUp: "slideUp 0.3s ease-out",
+              scaleIn: "scaleIn 0.2s ease-out",
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- ⭐ Custom CSS for Mobile -->
+    <style>
+      /* ⭐ Prevent tap highlight */
+      * {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      /* ⭐ Smooth scrolling */
+      html {
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+      }
+
+      /* ⭐ Prevent horizontal scroll */
+      body {
+        overflow-x: hidden;
+        overscroll-behavior-y: none;
+      }
+
+      /* ⭐ Better touch targets (iOS HIG = 44px) */
+      button,
+      a,
+      [role="button"] {
+        min-height: 44px;
+        min-width: 44px;
+      }
+
+      /* ⭐ Prevent zoom on input focus (iOS) */
+      input,
+      select,
+      textarea {
+        font-size: 16px !important;
+      }
+
+      /* ⭐ Safe area insets (iPhone notch) */
+      @supports (padding: env(safe-area-inset-top)) {
+        .safe-top {
+          padding-top: env(safe-area-inset-top);
+        }
+        .safe-bottom {
+          padding-bottom: env(safe-area-inset-bottom);
+        }
+        .safe-start {
+          padding-inline-start: env(safe-area-inset-left);
+        }
+        .safe-end {
+          padding-inline-end: env(safe-area-inset-right);
+        }
+      }
+
+      /* ⭐ Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(100, 116, 139, 0.4);
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(100, 116, 139, 0.6);
+      }
+
+      /* ⭐ Drawer scroll */
+      .drawer-scroll::-webkit-scrollbar {
+        width: 4px;
+      }
+      .drawer-scroll::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 2px;
+      }
+
+      /* ⭐ Disable text selection on buttons */
+      button {
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      /* ⭐ Loading spinner */
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .animate-spin {
+        animation: spin 1s linear infinite;
+      }
+
+      /* ⭐ Pulse animation for live indicator */
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+      .animate-pulse {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+
+      /* ⭐ Safe area padding for bottom nav */
+      .pb-safe {
+        padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+      }
+
+      /* ⭐ Fix flex overflow */
+      .flex-1 {
+        min-width: 0;
+        min-height: 0;
+      }
+
+      /* ⭐ Smooth transitions */
+      .transition-transform {
+        transition-property: transform;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+      }
+
+      /* ⭐ RTL Support Fix */
+      [dir="rtl"] .start-0 {
+        inset-inline-start: 0;
+        inset-inline-end: auto;
+      }
+      [dir="rtl"] .end-0 {
+        inset-inline-end: 0;
+        inset-inline-start: auto;
+      }
+      [dir="rtl"] .-translate-x-full {
+        transform: translateX(100%);
+      }
+      [dir="rtl"] .translate-x-0 {
+        transform: translateX(0);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
